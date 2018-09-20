@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect, render_to_response
 from django.utils import timezone
 from .models import Competition, Regulatory, Competitor
 from datetime import datetime
@@ -34,8 +34,11 @@ def add(request, pk):
     else:
         form = CompetitorForm(initial={'comp_name':event})
 
-
     return render(request, 'register/add.html', {'event': event, 'form': form})
+
+def people(request):
+    run = Competitor.objects.all().values('firstame', 'lastname',)
+    return render(request, 'register/list.html', {'run': run})
 
 
 
