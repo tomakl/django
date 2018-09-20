@@ -1,0 +1,40 @@
+{% extends 'register/base.html' %}
+{% block content %}
+{% for comp in comps %}
+
+<div class="postcontent nobottommargin">
+  <div id="posts" class="events small-thumbs">
+    <div class="entry clearfix">
+      <div class="entry-image">
+        <a href="#">
+            <img src="/media/{{comp.image}}" alt="Inventore voluptates velit totam ipsa tenetur">
+            <div class="entry-date">{{comp.date|date:"d M"}}</div>
+          </a>
+        </div>
+        <div class="entry-c">
+          <div class="entry-title">
+            <h2><a href="#">{{comp.name}} ({{comp.distance}}km)</a></h2>
+          </div>
+          <ul class="entry-meta clearfix">
+            {% if comp.status == 1 %}
+            <li><span class="badge badge-warning">Zapisy</span></li>
+            {% endif %}
+            <li><a href="#"><i class="icon-time"></i>{{comp.date}}</a></li>
+            <li><a href="#"><i class="icon-map-marker2"></i>{{comp.place}}</a></li>
+            <li><a href="#"><i class="icon-map-marker2"></i>Miejsc: {{ comp.allowed }}/ {{ comp.reported }}</a></li>
+          </ul>
+          <div class="entry-content">
+            <p>{{comp.info}}</p>
+              <a href="regulatory/{{comp.reg_name}}"> <button class="button button-border button-border-thin button-red">Regulamin</button></a>
+              <a href="add/{{comp.id}}" class="button button-border button-border-thin button-green">Zapisz się</a>
+              <a href="#" class="button button-border button-border-thin button-amber">Lista</a>
+            </div>
+        </div>
+      </div>
+      <div class="entry clearfix"></div>
+    </div>
+  </div>
+
+  {% endfor %}
+
+{% endblock %}

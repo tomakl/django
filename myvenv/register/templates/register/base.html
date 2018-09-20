@@ -1,0 +1,34 @@
+{% load static %}
+<html>
+		<head>
+				<title>Rejestracja na zawody</title>
+				<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css">
+				<link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+				<link rel="stylesheet" href="{% static 'style.css' %}">
+				<link rel="stylesheet" href="{% static 'dark.css' %}">
+				<link rel="stylesheet" href="{% static 'font-icons.css' %}">
+				<link rel="stylesheet" href="{% static 'animate.css' %}">
+				<link rel="stylesheet" href="{% static 'magnific-popup.css' %}">
+				<link rel="stylesheet" href="{% static 'responsive.css' %}">
+				<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		</head>
+<body class="stretched">
+	<section id="page-title">
+		<div class="content-wrap">
+			<div class="container clearfix">
+				<h1>Zawody</h1>
+				<span>Zapisz się na zawody</span>
+			</div>
+		</div>
+	</section>
+		<section id="content">
+			<div class="content-wrap">
+				<div class="container clearfix">
+					{% block content %}
+					{% endblock %}
+				</div>
+			</div>
+	</section>
+</body>
+</html>
