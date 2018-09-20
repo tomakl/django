@@ -51,7 +51,7 @@ class Competitor(models.Model):
     id = models.AutoField(primary_key=True)
     firstname=models.CharField(max_length=200,verbose_name="Imię")
     lastname=models.CharField(max_length=200, verbose_name="Nazwisko")
-    birth=models.DateField(default=timezone.now, verbose_name="Data urodzenia")
+    birth=models.DateField(verbose_name="Data urodzenia")
     gender=models.IntegerField(verbose_name='Płeć', choices=GENDER_CHOICES, default=0)
     club=models.CharField(max_length=200, verbose_name="Klub/Drużyna")
     email = models.EmailField(max_length=70,blank=True, verbose_name="Email")

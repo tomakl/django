@@ -1,24 +1,28 @@
 {% extends 'register/base.html' %}
 {% load bootstrap4 %}
 {% block content %}
-<div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-         <div class="card red-card big-card">
-            <div class="card-body">
-                <h3 class="card-title">Rejestracja</h3>
+<div class="postcontent nobottommargin">
+    <h3>Zapisz się</h3>
+    <div class="contact-widget">
+        <div class="contact-form-result"></div>
+        <form method="post" class="form login-form">
+            {% csrf_token %}
+            {% bootstrap_form form show_label=False %}
 
-                <form method="post" class="form login-form">
-                    {% csrf_token %}
-                    {% bootstrap_form form show_label=False %}
-                    {% buttons %}
-                    <button type="submit" class="btn btn-red btn-block">Utwórz konto</button>
-                    {% endbuttons %}
-                </form>
+            {% buttons %}
+            <button type="submit" class="btn btn-red btn-block">Zapisz się</button>
+            {% endbuttons %}
+        </form>
 
-            </div>
-        </div>
     </div>
 </div>
-<br>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker12').datetimepicker({
+            inline: true,
+            sideBySide: true,
+            format: 'DD.MM.YYYY' /*remove this line if you want to use time as well */
+        });
+    });
+</script>
 {% endblock %}
