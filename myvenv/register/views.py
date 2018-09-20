@@ -1,16 +1,10 @@
-from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect, render_to_response
-from django.utils import timezone
-from django.views.generic import TemplateView
-
-from .models import Competition, Regulatory, Competitor
-from datetime import datetime
 from django.core.paginator import Paginator
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import TemplateView
 from .forms import CompetitorForm
-from django.contrib.auth import login, authenticate
+from .models import Competition, Regulatory, Competitor
 
-from django.views import generic
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse
+
 
 def competition_list(request):
     comps = Competition.objects.all().values('id','name','distance','date','price','reg_name','image','info','place','allowed','reported','status')
