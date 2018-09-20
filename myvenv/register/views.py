@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect, render_to_response
 from django.utils import timezone
+from django.views.generic import TemplateView
+
 from .models import Competition, Regulatory, Competitor
 from datetime import datetime
 from django.core.paginator import Paginator
@@ -19,8 +21,6 @@ def reg_detail (request, pk):
     detail = get_object_or_404(Regulatory, pk=pk)
     return render(request, 'register/reg_details.html', {'detail': detail})
 
-
-
 def add(request, pk):
     event = get_object_or_404(Competition, pk=pk)
     if request.POST:
@@ -28,29 +28,22 @@ def add(request, pk):
         if form.is_valid():
             competitor = form.save(commit=False)
             competitor.comp_name = event
-
             competitor.save()
-
     else:
         form = CompetitorForm(initial={'comp_name':event})
-
     return render(request, 'register/add.html', {'event': event, 'form': form})
 
-def people(request):
-    run = Competitor.objects.all().values('firstame', 'lastname',)
+def list(request,pk):
+    run = get_object_or_404(Competition, pk=pk)
     return render(request, 'register/list.html', {'run': run})
 
+class CompetitorView(TemplateView):
+    template_name = 'register/users.html'
 
-
-
-
-
-
-
-
-
-
-
+    def get_context_data(self,**kwargs):
+        context = (CompetitorView,self).get_context_data(**kwargs)
+        context['object_list'] = Competitor.objects.all()
+        return context
 
 
 # Create your views here.

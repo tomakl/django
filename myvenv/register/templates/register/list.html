@@ -1,0 +1,14 @@
+{% extends 'register/base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+{% for run in runs %}
+
+
+    <div>
+
+      {{run.firstname}}
+    </div>
+
+  {% endfor %}
+
+{% endblock %}
