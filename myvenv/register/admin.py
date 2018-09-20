@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Competition, Competitor, Regulatory, CompetitionRegister
+from .models import Competition, Competitor, Regulatory
 
 
 class CompetitionAdmin(admin.ModelAdmin):
@@ -27,5 +27,5 @@ class CompetitionRegisterAdmin(admin.ModelAdmin):
 admin.site.register(Competition, CompetitionAdmin)
 admin.site.register(Competitor, CompetitorAdmin)
 admin.site.register(Regulatory, RegulatoryAdmin)
-admin.site.register(CompetitionRegister, CompetitionRegisterAdmin)
+
 # Register your models here.

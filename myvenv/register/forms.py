@@ -6,4 +6,4 @@ class CompetitorForm(forms.ModelForm):
 
     class Meta:
         model = Competitor
-        fields = ('firstname', 'lastname','birth','club','gender')
+        fields = ('firstname', 'lastname','email', 'birth','club','gender')

@@ -60,7 +60,7 @@ class Competitor(models.Model):
 
     class Meta:
         verbose_name = ("Zawodnik")
-        verbose_name_plural = ("Zawodnicy")git init
+        verbose_name_plural = ("Zawodnicy")
 
     def __str__(self):
         return "{} {}".format(self.firstname, self.lastname)

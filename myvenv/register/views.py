@@ -26,21 +26,11 @@ def add(request, pk):
     if request.POST:
         form = CompetitorForm(request.POST)
         if form.is_valid():
-            ### NO NEED FOR - already set as part of valid modelform ::: rating = form.cleaned_data['rating']
-            ### AS WELL AS ::: comment = form.cleaned_data['comment']
-
-            ### THIS IS NOT A FIELD IN YOUR FORM :::user_name = form.cleaned_data['user_name']
-            # compettitor = request.user.username
-
-            competitor = form.save(commit=False) # commit = False means that this instantiate but not save a Review model object
+            competitor = form.save(commit=False)
             competitor.comp_name = event
-            # competition.name = competition
 
-            competitor.save() # save to the DB now
-            # Always return an HttpResponseRedirect after successfully dealing
-            # with POST data. This prevents data from being posted twice if a
-            # user hits the Back button.
-            return HttpResponseRedirect(reverse('competitor:event', args=(competitor.id,))) # THIS will redirect only upon form save
+            competitor.save()
+
     else:
         form = CompetitorForm(initial={'comp_name':event})
 
