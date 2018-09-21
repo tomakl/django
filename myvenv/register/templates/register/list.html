@@ -15,24 +15,22 @@
             </thead>
             <tbody>
             {% for list in lists %}
-                {% with list.competition.all as lists %}
 
             <tr>
                 <td></td>
-                <td>
-                    {{ competitor }}
-                     {% endwith %}
-                    {% endfor %}
+                <td>{{ list.firstname }}</td>
+                <td>{{ list.lastname }}</td>
+                <td>{{ list.club }}</td>
+                <td></td>
+                <td></td>
 
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
             </tr>
+            {% endfor %}
             </tbody>
 
         </table>
+
+
 
     </div>
 

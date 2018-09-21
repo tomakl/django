@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'import_export',
 
+
 ]
 
 MIDDLEWARE = [
