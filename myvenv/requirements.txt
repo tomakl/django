@@ -3,3 +3,5 @@ git+https://github.com/darklow/django-suit.git
 django-bootstrap4
 Pillow
 django-bootstrap3-datetimepicker
+django-ckeditor
+django-import-export

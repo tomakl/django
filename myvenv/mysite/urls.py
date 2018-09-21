@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^pages/', include('django.contrib.flatpages.urls')),
     path('admin/', admin.site.urls),
     path('', include('register.urls')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 if (settings.DEBUG):

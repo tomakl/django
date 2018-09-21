@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'bootstrap4',
     'django.contrib.sites',
     'django.contrib.flatpages',
+    'ckeditor',
+    'import_export',
+
 ]
 
 MIDDLEWARE = [
@@ -130,4 +133,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 SITE_ID = 1
+CKEDITOR_UPLOAD_PATH = "media/ckeditor"
 

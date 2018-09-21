@@ -1,11 +1,12 @@
 from django.db import models
 from django.utils import timezone
+from ckeditor.fields import RichTextField
 
 
 class Regulatory(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, blank = True, verbose_name="Nazwa")
-    content = models.TextField(verbose_name="Treść regulaminu")
+    content = RichTextField(verbose_name="Treść regulaminu",)
     created_date = models.DateTimeField(
             default=timezone.now, verbose_name="Utworzono")
     published_date = models.DateTimeField(
@@ -61,6 +62,7 @@ class Competitor(models.Model):
     class Meta:
         verbose_name = ("Zawodnik")
         verbose_name_plural = ("Zawodnicy")
+        ordering = ('lastname',)
 
     def __str__(self):
         return "{} {}".format(self.firstname, self.lastname)
