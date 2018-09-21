@@ -1,14 +1,57 @@
 {% extends 'register/base.html' %}
 {% load bootstrap4 %}
 {% block content %}
-{% for run in runs %}
 
-
-    <div>
-
-      {{run.firstname}}
+    <div class="table-responsive">
+        <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>Nr startowy</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Klub</th>
+                <th>Miasto</th>
+                <th>Kategoria wiekowa</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for list in lists %}
+            <tr>
+                <td></td>
+                <td>{{ lists.firstname }}</td>
+                <td>{{ lists.lastname }}</td>
+                <td>{{ lists.club }}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
+{% if lists.has_other_pages %}
+  <ul class="pagination">
+    {% if lists.has_previous %}
+      <li><a href="?page={{ lists.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in lists.paginator.page_range %}
+      {% if lists.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if lists.has_next %}
+      <li><a href="?page={{ lists.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
 
-  {% endfor %}
+
+
+
 
 {% endblock %}
