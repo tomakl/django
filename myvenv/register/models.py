@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from ckeditor.fields import RichTextField
+from datetime import date
 
 
 
@@ -55,7 +56,7 @@ class Competitor(models.Model):
     lastname=models.CharField(max_length=200, verbose_name="Nazwisko")
     birth=models.DateField(verbose_name="Data urodzenia")
     gender=models.IntegerField(verbose_name='Płeć', blank=True, choices=GENDER_CHOICES, default=0)
-    city = models.CharField(verbose_name='Miasto', max_length=200 )
+    city = models.CharField(verbose_name='Miasto', max_length=200,default=" ")
     club=models.CharField(max_length=200, verbose_name="Klub/Drużyna")
     email = models.EmailField(max_length=70,blank=True, verbose_name="Email")
     comp_name = models.ForeignKey('Competition', blank = True, null=True, on_delete=models.CASCADE, verbose_name="Zawody")
@@ -70,8 +71,12 @@ class Competitor(models.Model):
         return "{} {}".format(self.firstname, self.lastname)
         ordering = ('self.lastname')
 
-
-
+    def age(self):
+        today = date.today()
+        age = today.year - self.birth.year - (
+                    (today.month, today.day) < (self.birth.month, self.birth.day))
+        return "{} lat".format(age)
+    age.short_description = 'Wiek'
 
 
 

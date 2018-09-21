@@ -5,4 +5,4 @@ Pillow
 django-bootstrap3-datetimepicker
 django-ckeditor
 django-import-export
-
+django-tables2

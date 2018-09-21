@@ -12,9 +12,9 @@ class CompetitionAdmin(admin.ModelAdmin):
 
 
 class CompetitorAdmin(ImportExportModelAdmin):
-    list_display = ('firstname', 'lastname', 'club', 'comp_name',)
+    list_display = ('firstname', 'lastname','club', 'comp_name', 'gender', 'age')
     list_per_page = 10
-    list_filter = ['comp_name']
+    list_filter = ['comp_name', 'gender']
 
 
 

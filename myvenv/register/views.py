@@ -1,9 +1,7 @@
 from django.shortcuts import render, get_object_or_404, render_to_response
-from django.template import RequestContext
-from django.views.generic import TemplateView
 from .forms import CompetitorForm
 from .models import Competition, Regulatory, Competitor
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+
 
 
 def competition_list(request):
@@ -33,5 +31,6 @@ def add(request, pk):
 def competitor_list(request,pk):
     lists = Competitor.objects.filter(comp_name_id=pk).all()
     return render_to_response('register/list.html', {"lists": lists})
+
 
 # Create your views here.
