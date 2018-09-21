@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, render_to_response
+from django.template import RequestContext
 from django.views.generic import TemplateView
 from .forms import CompetitorForm
 from .models import Competition, Regulatory, Competitor
-from django.core.paginator import Paginator, EmptyPage, InvalidPage, PageNotAnInteger
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 
 def competition_list(request):
@@ -29,18 +30,8 @@ def add(request, pk):
     return render(request, 'register/add.html', {'event': event, 'form': form})
 
 
-def competitor_list(request, pk):
-    lists = get_object_or_404(Competitor, pk=pk)
-    paginator = Paginator(competitor_list, 5)
-    page = request.GET.get('page')
-
-    try:
-        lists = paginator.page(page)
-    except PageNotAnInteger:
-        lists = paginator.page(1)
-    except EmptyPage:
-        lists = paginator.page(paginator.num_pages)
-
-    return render_to_response(request, 'register/list.html', {'lists': lists})
+def competitor_list(request,pk):
+    lists = Competitor.objects.get(pk=Competition.id)
+    return render_to_response('register/list.html', {"lists": lists}, context_instance=RequestContext(request))
 
 # Create your views here.
