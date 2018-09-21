@@ -31,7 +31,7 @@ def add(request, pk):
 
 
 def competitor_list(request,pk):
-    lists = Competitor.objects.get(pk=Competition.id)
+    lists = Competitor.objects.filter(comp_name__id=pk).all()
     return render_to_response('register/list.html', {"lists": lists}, context_instance=RequestContext(request))
 
 # Create your views here.
