@@ -1,9 +1,10 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404, render_to_response
+from django.shortcuts import render, get_object_or_404
+from django_tables2 import RequestConfig, SingleTableMixin
 from .forms import CompetitorForm
 from .models import Competition, Regulatory, Competitor
 from django.contrib import messages
-
+from .tables import CompetitorTable
+import django_filters
 
 
 def competition_list(request):
@@ -26,16 +27,17 @@ def add(request, pk):
             competitor.comp_name = event
             competitor.save()
             messages.success(request, 'Twoje zgłoszenie zostało przyjęte')
-
     else:
         form = CompetitorForm(initial={'comp_name': event})
 
     return render(request, 'register/add.html', {'event': event, 'form': form})
 
 
-def competitor_list(request,pk):
-    lists = Competitor.objects.filter(comp_name_id=pk).all()
-    return render_to_response('register/list.html', {"lists": lists})
+def competitor_list(request, pk):
+
+    lists = CompetitorTable(Competitor.objects.filter(comp_name_id=pk).all(), order_by = "id")
+    RequestConfig(request, paginate={"per_page": 5}).configure(lists)
+    return render(request, 'register/list.html', {'lists': lists})
 
 
 

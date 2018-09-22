@@ -3,6 +3,11 @@ from .models import Competitor
 
 
 class CompetitorTable(tables.Table):
+    start_number = tables.Column()
+    firstname = tables.Column()
+    lastname = tables.Column()
+    club = tables.Column()
+    payment = tables.Column()
     class Meta:
-        model = Competitor
-        template_name = '/register/django_tables2/bootstrap.html'
+        template_name = 'django_tables2/bootstrap.html'
+
