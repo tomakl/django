@@ -35,8 +35,8 @@ def add(request, pk):
 
 def competitor_list(request, pk):
 
-    lists = CompetitorTable(Competitor.objects.filter(comp_name_id=pk).all(), order_by = "id")
-    RequestConfig(request, paginate={"per_page": 5}).configure(lists)
+    lists = CompetitorTable(Competitor.objects.filter(comp_name_id=pk).all(), order_by = "start_number")
+    RequestConfig(request, paginate={"per_page": 10}).configure(lists)
     return render(request, 'register/list.html', {'lists': lists})
 
 

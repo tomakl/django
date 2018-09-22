@@ -75,9 +75,9 @@ class Competitor(models.Model):
     club = models.CharField(max_length=200, verbose_name="Klub/Drużyna")
     email = models.EmailField(max_length=70, blank=True, verbose_name="Email")
     comp_name = models.ForeignKey('Competition', blank=True, null=True, on_delete=models.CASCADE, verbose_name="Zawody")
-    payment = models.SmallIntegerField(choices= PAYMENT_CHOICES, default=0, verbose_name="Płatności")
+    payment = models.SmallIntegerField(choices= PAYMENT_CHOICES, default=0, verbose_name="Płatność")
     payment_date = models.DateTimeField(null=True, blank=True, verbose_name="Data płatności")
-    start_number = models.IntegerField(verbose_name="Numer startowy", default=0)
+    start_number = models.IntegerField(verbose_name="Numer startowy", null=True, blank=True)
 
     class Meta:
         verbose_name = ("Zawodnik")
