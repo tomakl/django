@@ -1,12 +1,14 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, render_to_response
 from .forms import CompetitorForm
 from .models import Competition, Regulatory, Competitor
+from django.contrib import messages
 
 
 
 def competition_list(request):
     comps = Competition.objects.all().values('id', 'name', 'distance', 'date', 'price', 'reg_name', 'image', 'info',
-                                             'place', 'allowed', 'reported', 'status', 'published_date')
+                                             'place', 'allowed', 'reported', 'status')
     return render(request, 'register/compe_list.html', {'comps': comps})
 
 
@@ -23,14 +25,19 @@ def add(request, pk):
             competitor = form.save(commit=False)
             competitor.comp_name = event
             competitor.save()
+            messages.success(request, 'Twoje zgłoszenie zostało przyjęte')
+
     else:
         form = CompetitorForm(initial={'comp_name': event})
+
     return render(request, 'register/add.html', {'event': event, 'form': form})
 
 
 def competitor_list(request,pk):
     lists = Competitor.objects.filter(comp_name_id=pk).all()
     return render_to_response('register/list.html', {"lists": lists})
+
+
 
 
 # Create your views here.

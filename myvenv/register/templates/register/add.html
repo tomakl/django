@@ -1,7 +1,18 @@
 {% extends 'register/base.html' %}
 {% load bootstrap4 %}
 {% block content %}
+
+
 <div class="postcontent nobottommargin">
+
+    {% if messages %}
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+         {% for message in messages %}
+        <i class="thumbs-up"></i>{{ message }}<a href="/" class="alert-link"> Wróć do strony głównej</a>
+        {% endfor %}
+    </div>
+    {% endif %}
     <h3>Rejestracja</h3>
     <div class="contact-widget">
         <div class="contact-form-result"></div>
@@ -12,6 +23,7 @@
             {% buttons %}
             <button type="submit" class="btn btn-red btn-block">Zapisz się</button>
             {% endbuttons %}
+            <input type="hidden" name="alert" value="{{alert}}" readonly>
         </form>
 
     </div>

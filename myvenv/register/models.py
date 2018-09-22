@@ -22,10 +22,16 @@ class Regulatory(models.Model):
         return "{} ({})".format(self.name, self.published_date)
 
 
+
+
 class Competition(models.Model):
     STATUS_CHOICES = (
         (1, 'Aktywny'),
         (0, 'Nieaktywny'),
+    )
+    TYPE_CHOICES = (
+    (1, 'Zawody sportowe'),
+    (2, 'Inne wydarzenie'),
     )
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, verbose_name="Nazwa zawodów")
@@ -39,12 +45,13 @@ class Competition(models.Model):
     status = models.SmallIntegerField(choices=STATUS_CHOICES)
     allowed = models.IntegerField(verbose_name='Limit', default='0')
     reported = models.IntegerField(verbose_name='Zgłoszonych', null=True, blank='True', default='0')
-    published_date = models.DateTimeField(auto_now_add=datetime.now(), blank=True, null=True)
+
+
 
     class Meta:
         verbose_name = ("Zawody")
         verbose_name_plural = ("Zawody")
-        ordering = ('published_date',)
+        ordering = ('-id',)
 
     def __str__(self):
         return "{} ({} km)".format(self.name, self.distance)
@@ -70,11 +77,12 @@ class Competitor(models.Model):
     comp_name = models.ForeignKey('Competition', blank=True, null=True, on_delete=models.CASCADE, verbose_name="Zawody")
     payment = models.SmallIntegerField(choices= PAYMENT_CHOICES, default=0, verbose_name="Płatności")
     payment_date = models.DateTimeField(null=True, blank=True, verbose_name="Data płatności")
-    start_number = models.IntegerField(verbose_name="Numer startowy", null=True, blank=True)
+    start_number = models.IntegerField(verbose_name="Numer startowy", default=0)
 
     class Meta:
         verbose_name = ("Zawodnik")
         verbose_name_plural = ("Zawodnicy")
+        ordering = ['-id']
 
     def __str__(self):
         return "{} {}".format(self.firstname, self.lastname)

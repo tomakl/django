@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.db.models import Max
+
 from .models import Competition, Competitor, Regulatory
 from import_export.admin import ImportExportModelAdmin
 from django.utils import timezone
@@ -13,7 +15,7 @@ class CompetitionAdmin(admin.ModelAdmin):
 
 
 class CompetitorAdmin(ImportExportModelAdmin):
-    list_display = ('start_number','firstname', 'lastname','club', 'comp_name', 'gender', 'age', 'payment', 'payment_date')
+    list_display = ('start_number','firstname', 'lastname','club', 'comp_name', 'gender', 'age', 'payment', 'payment_date',)
     list_per_page = 10
     list_filter = ['comp_name', 'gender']
     list_display_links = ['firstname','lastname']
@@ -25,7 +27,6 @@ class CompetitorAdmin(ImportExportModelAdmin):
     def change_payment_down(self, request, queryset):
         queryset.update(payment='0')
     change_payment_down.short_description = "Wycofaj płatność"
-
 
 
 class RegulatoryAdmin(admin.ModelAdmin):
