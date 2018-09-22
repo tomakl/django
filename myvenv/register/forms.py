@@ -8,7 +8,7 @@ class CompetitorForm(forms.ModelForm):
 
     class Meta:
         model = Competitor
-        fields = ('firstname', 'lastname','email', 'birth','club','gender')
+        fields = ('firstname', 'lastname','email', 'birth', 'city','club','gender')
         widgets = {
             'birth': forms.DateInput(attrs={'type': 'date'})
         }

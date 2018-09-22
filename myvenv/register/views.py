@@ -6,7 +6,7 @@ from .models import Competition, Regulatory, Competitor
 
 def competition_list(request):
     comps = Competition.objects.all().values('id', 'name', 'distance', 'date', 'price', 'reg_name', 'image', 'info',
-                                             'place', 'allowed', 'reported', 'status')
+                                             'place', 'allowed', 'reported', 'status', 'published_date')
     return render(request, 'register/compe_list.html', {'comps': comps})
 
 
